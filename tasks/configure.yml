@@ -96,7 +96,7 @@
 
 - name: "Android | SDK | Install build tools"
   ansible.builtin.shell:
-    cmd: "{{ sdkmanager_path }} --install \"build-tools;{{ item.version }}\" --channel={{ four_channel_map[item.channel] | default('0') }} | grep -v = || true"
+    cmd: "{{ sdkmanager_path }} --install \"build-tools;{{ item.version }}\" --channel={{ four_channel_map[item.channel | default('stable')] | default('0') }} | grep -v = || true"
   environment:
     # The remote environment variables are not available to the task
     # and so the environment is supplied here.
@@ -118,7 +118,7 @@
 
 - name: "Android | SDK | Install platforms"
   ansible.builtin.shell:
-    cmd: "{{ sdkmanager_path }} --install \"platforms;android-{{ item.version }}\" --channel={{ four_channel_map[item.channel] | default('0') }} | grep -v = || true"
+    cmd: "{{ sdkmanager_path }} --install \"platforms;android-{{ item.version }}\" --channel={{ four_channel_map[item.channel | default('stable')] | default('0') }} | grep -v = || true"
   environment:
     # The remote environment variables are not available to the task
     # and so the environment is supplied here.
@@ -130,24 +130,24 @@
 
 - name: "Android | SDK | Install NDK"
   ansible.builtin.shell:
-    cmd: "{{ sdkmanager_path }} --install \"ndk;{{ item.version }}\" --channel={{ three_channel_map[item.channel] | default('0') }} | grep -v = || true"
+    cmd: "{{ sdkmanager_path }} --install \"ndk;{{ item.version }}\" --channel={{ three_channel_map[item.channel | default('stable')] | default('0') }} | grep -v = || true"
   environment:
     # The remote environment variables are not available to the task
     # and so the environment is supplied here.
     ANDROID_HOME: "{{ android_sdk_home }}"
-  loop: "{{ android_requested_sdk.ndk }}"
+  loop: "{{ android_sdk.ndk }}"
   when:
     - android_sdk.ndk is defined
     - android_sdk.ndk | length > 0
 
 - name: "Android | SDK | Install cmake"
   ansible.builtin.shell:
-    cmd: "{{ sdkmanager_path }} --install \"cmake;{{ item.version }}\" --channel={{ three_channel_map[item.channel] | default('0') }} | grep -v = || true"
+    cmd: "{{ sdkmanager_path }} --install \"cmake;{{ item.version }}\" --channel={{ three_channel_map[item.channel | default('stable')] | default('0') }} | grep -v = || true"
   environment:
     # The remote environment variables are not available to the task
     # and so the environment is supplied here.
     ANDROID_HOME: "{{ android_sdk_home }}"
-  loop: "{{ android_requested_sdk.cmake }}"
+  loop: "{{ android_sdk.cmake }}"
   when:
     - android_sdk.cmake is defined
     - android_sdk.cmake | length > 0

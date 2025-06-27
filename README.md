@@ -64,21 +64,21 @@ android_sdk:
     link:
       adb: [boolean]  If true, adb will be symlinked to '/usr/bin'
       sdkmanager: [boolean] If true, sdkmanager will be symlinked to '/usr/bin'
-    platform_tools:
-      channel: [stable, beta, canary] Indicates the channel to install platform tools from. Defaults to 'stable'
-    build_tools:
-      - version: [string] The version to install [required]
-        channel: [stable, beta, development, canary] Indicates the the channel to install from. Defaults to 'stable'
-    platforms:
-      - version: [integer] The version to install [required]
-        channel: [stable, beta, development, canary]  Indicates the the channel to install from. Defaults to 'stable'
-    ndk:
-      - version: [string] The version to install [required]
-        channel: [stable, beta, canary]  Indicates the the channel to install from. Defaults to 'stable'
-    cmake:
-      - version: [string] The version to install [required]
-        channel: [stable, beta, canary]  Indicates the the channel to install from. Defaults to 'stable'
-    plugdev_users: [string array] A list of users to add the 'plugdev' group to.
+  platform_tools:
+    channel: [stable, beta, canary] Indicates the channel to install platform tools from. Defaults to 'stable'
+  build_tools:
+    - version: [string] The version to install [required]
+      channel: [stable, beta, development, canary] Indicates the the channel to install from. Defaults to 'stable'
+  platforms:
+    - version: [integer] The version to install [required]
+      channel: [stable, beta, development, canary]  Indicates the the channel to install from. Defaults to 'stable'
+  ndk:
+    - version: [string] The version to install [required]
+      channel: [stable, beta, canary]  Indicates the the channel to install from. Defaults to 'stable'
+  cmake:
+    - version: [string] The version to install [required]
+      channel: [stable, beta, canary]  Indicates the the channel to install from. Defaults to 'stable'
+  plugdev_users: [string array] A list of users to add the 'plugdev' group to.
 ```
 
 #### Bootstrap
