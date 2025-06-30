@@ -9,7 +9,7 @@
 
 - name: "Android | SDK | set 'android_sdk_home' variable"
   ansible.builtin.set_fact:
-    android_sdk_home: "{{  android_sdk.environment.variables.sdk_home.path | default(android_sdk_home) }}"
+    android_sdk_home: "{{ android_sdk.environment.variables.sdk_home.path | default(android_sdk_home) }}"
 
 - name: "Android | SDK | Configure sdk"
   ansible.builtin.import_tasks: configure.yml
